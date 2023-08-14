@@ -14,12 +14,6 @@ def test_no_such_page():
         wikiquote.quotes("foobarfoobar")
 
 
-def test_unsupported_lang():
-    """Test that an exception is raised when an unsupported language is passed."""
-    with pytest.raises(wikiquote.UnsupportedLanguageException, match="Unsupported language: foobar"):
-        wikiquote.quotes("Matrix", lang="foobar")
-
-
 @pytest.mark.parametrize(
     "lang, query",
     [("en", "Barack Obama"), ("he", "ברק אובמה"), ("es", "Simón Bolívar"), ("fr", "Victor Hugo")],
@@ -109,4 +103,17 @@ def test_invalid_inputs(input_value):
 
     with pytest.raises(TypeException):
         wikiquote.random_titles(lang=input_value)
+
+
+def test_supported_languages():
+    """Test that all language modules are being loaded"""
+    expected_languages = ["de", "en", "es", "eu", "fr", "he", "it", "pl", "pt"]
+    assert wikiquote.supported_languages() == expected_languages
+
+
+def test_invalid_languages():
+    """Test that an exception is raised when an invalid language is passed."""
+    with pytest.raises(wikiquote.UnsupportedLanguageException, match="Unsupported language: foobar"):
+        wikiquote.quotes("Matrix", lang="foobar")
+
 
