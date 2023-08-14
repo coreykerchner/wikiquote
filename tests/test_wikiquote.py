@@ -101,7 +101,7 @@ def test_invalid_inputs(input_value):
     with pytest.raises(TypeError):
         wikiquote.quotes(input_value)
 
-    with pytest.raises(TypeException):
+    with pytest.raises(TypeError):
         wikiquote.random_titles(lang=input_value)
 
 
