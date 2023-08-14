@@ -91,7 +91,7 @@ def test_max_quotes_exceed_limit():
 
 @pytest.mark.parametrize(
     "input_value",
-    [123, [], {}, 12.34, None]
+    [123, [], {}, 12.34, None, False]
 )
 def test_invalid_inputs(input_value):
     """Test various non-string inputs to ensure they raise the standard TypeError."""
